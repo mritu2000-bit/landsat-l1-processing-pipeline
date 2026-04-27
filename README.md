@@ -1,5 +1,11 @@
 # Landsat L1 Processing Pipeline
-I built this to understand what actually happens between a raw satellite image and an analysis-ready product — the step most GIS workflows skip over.
+I built this project to understand the end-to-end process of satellite image preprocessing — specifically what happens at the L1 stage before data becomes analysis-ready.
+
+# Why I built this
+Most GIS workflows I've worked on start with already-corrected data. I wanted to understand what that correction actually involves at the processing level, so I built this pipeline from scratch using real Landsat 9 data over an Indian scene.
+
+# What I learned
+One thing that surprised me — when I checked the metadata after downloading the scene from USGS Earth Explorer, I found the geometric correction was already applied. So the actual work here was focused entirely on atmospheric correction using the 6S radiative transfer model via Py6S.
 
 # What it does
 Takes raw Landsat 9 OLI Level-1 data and processes it end-to-end:
@@ -22,6 +28,3 @@ Python · rasterio · NumPy · Py6S · QGIS
 | TOA Reflectance | 0.24 – 1.0 |
 | Surface Reflectance | 0.21 – 0.94 |
 | Atmospheric contribution removed | ~0.03 units |
-
-# Why this matters
-Most EO analytics pipelines assume the data is already corrected. This project gave me hands-on understanding of what that correction actually involves — and where it can go wrong.
